@@ -1,17 +1,29 @@
 package main
 
 /*
+	extern void init();
 	extern int start();
-	extern int drv_appmain();
+	extern void * request(void *, int);
 */
-// #cgo LDFLAGS: -L./ -ldemo
+// #include <stdio.h>
+// #include <stdlib.h>
+// #cgo LDFLAGS: -L./ -ldoors
 import "C"
+import "unsafe"
+import "fmt"
 
 func main() {
+	C.init()
 	C.start()
 }
 
-//export drv_appmain
-func drv_appmain() C.int {
-	return 100
+//export request
+func request(_content unsafe.Pointer, _size C.int) unsafe.Pointer {
+	fmt.Println(string(C.GoBytes(_content, _size)))
+	content := unsafe.Pointer(C.CString("你好, Golang"))
+	defer func() {
+		C.free(content)
+	}()
+	return unsafe.Pointer(content)
+
 }
