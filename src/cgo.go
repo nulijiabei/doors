@@ -10,7 +10,6 @@ package main
 // #cgo LDFLAGS: -L./ -ldoors
 import "C"
 import "unsafe"
-import "fmt"
 
 func main() {
 	C.init()
@@ -19,11 +18,6 @@ func main() {
 
 //export request
 func request(_content unsafe.Pointer, _size C.int) unsafe.Pointer {
-	fmt.Println(string(C.GoBytes(_content, _size)))
-	content := unsafe.Pointer(C.CString("你好, Golang"))
-	defer func() {
-		C.free(content)
-	}()
+	content := unsafe.Pointer(C.CString(string(C.GoBytes(_content, _size))))
 	return unsafe.Pointer(content)
-
 }
