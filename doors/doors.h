@@ -15,6 +15,9 @@ public:
     explicit Doors(QWidget *parent = 0);
     ~Doors();
 
+public:
+    QTimer * timer;
+
 private:
     Ui::Doors *ui;
 
@@ -23,7 +26,7 @@ signals:
 
 private slots:
     void sendText();
-
+    void sendLine();
 };
 
 #endif // DOORS_H

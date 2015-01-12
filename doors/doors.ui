@@ -11,14 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Doors</string>
+   <string>...</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTextBrowser" name="textBrowser">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>60</y>
+      <y>10</y>
       <width>780</width>
       <height>530</height>
      </rect>
@@ -28,7 +28,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>550</y>
       <width>780</width>
       <height>40</height>
      </rect>

@@ -8,7 +8,10 @@ Doors::Doors(QWidget *parent) :
     ui(new Ui::Doors)
 {
     ui->setupUi(this);
-    connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(sendText()));
+    connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(sendLine()));
+    timer = new QTimer();
+    connect(timer,SIGNAL(timeout()), this, SLOT(sendText()));
+    timer->start(1000);
 }
 
 Doors::~Doors()
@@ -18,8 +21,12 @@ Doors::~Doors()
 
 void Doors::sendText()
 {
-    void * p = request((void*)ui->lineEdit->text().toLatin1().data(), ui->lineEdit->text().toLatin1().length());
-    ui->lineEdit->clear();
+    void * p = output();
     ui->textBrowser->setText(tr((char*)p));
-    delete(p);
+    free(p);
+}
+
+void Doors::sendLine() {
+    input((void*)ui->lineEdit->text().toLatin1().data(), ui->lineEdit->text().toLatin1().length());
+    ui->lineEdit->clear();
 }
