@@ -16,6 +16,9 @@ public:
     ~Doors();
 
 public:
+    int number;
+
+public:
     QTimer * timer;
 
 private:
@@ -27,6 +30,7 @@ signals:
 private slots:
     void sendText();
     void sendLine();
+    void on_pushButton_clicked();
 };
 
 #endif // DOORS_H

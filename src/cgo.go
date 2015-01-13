@@ -38,10 +38,10 @@ func main() {
 func input(_content unsafe.Pointer, _size C.int) {
 	command := string(C.GoBytes(_content, _size))
 	if z.Trim(command) == "clear" {
-		history = z.GetTime()
+		history = z.GetTime() + "\n"
 	} else {
-		content := fmt.Sprintf("$ %s\n", command)
-		history = fmt.Sprintf("%s\n%s\n", content, history)
+		content := fmt.Sprintf("$ %s", command)
+		history = fmt.Sprintf("%s\n%s\n", history, content)
 		write(command)
 	}
 }
@@ -71,7 +71,7 @@ func read() {
 				break
 			}
 
-			history = fmt.Sprintf("%s\n%s\n", string(data), history)
+			history = fmt.Sprintf("%s\n%s", history, string(data))
 
 		}
 

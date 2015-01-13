@@ -23,10 +23,20 @@ void Doors::sendText()
 {
     void * p = output();
     ui->textBrowser->setText(tr((char*)p));
+    ui->textBrowser->moveCursor(QTextCursor::End);
     free(p);
 }
 
 void Doors::sendLine() {
     input((void*)ui->lineEdit->text().toLatin1().data(), ui->lineEdit->text().toLatin1().length());
     ui->lineEdit->clear();
+}
+
+void Doors::on_pushButton_clicked() {
+    if ((number % 2) == 0) {
+        timer->stop();
+    } else {
+        timer->start(1000);
+    }
+    number += 1;
 }
