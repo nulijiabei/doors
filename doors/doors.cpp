@@ -8,6 +8,14 @@ Doors::Doors(QWidget *parent) :
     ui(new Ui::Doors)
 {
     ui->setupUi(this);
+    // 关闭自动换行
+    ui->textBrowser->setWordWrapMode(QTextOption::NoWrap);
+    // 自动换行模式
+    // ui->textBrowser->setWordWrapMode (QTextOption::WordWrap);
+    // 改变背景色
+    QPalette pal = ui->textBrowser->palette();
+    pal.setColor(QPalette::Base, QColor(255,228,196));
+    ui->textBrowser->setPalette(pal);
     connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(sendLine()));
     timer = new QTimer();
     connect(timer,SIGNAL(timeout()), this, SLOT(sendText()));

@@ -17,6 +17,7 @@ import (
 	z "github.com/nutzam/zgo"
 	"io"
 	"log"
+	"runtime"
 	"time"
 )
 
@@ -28,10 +29,19 @@ var history string
 
 // 主
 func main() {
+
+	runtime.GOMAXPROCS(runtime.NumCPU())
+
+	log.SetFlags(log.Lshortfile | log.Ldate | log.Ltime | log.Lmicroseconds)
+
 	conn = NewConn()
+
 	go read()
+
 	C.init()
+
 	C.start()
+
 }
 
 //export input
