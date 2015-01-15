@@ -3,8 +3,6 @@ package main
 /*
 	extern void init();
 	extern int start();
-	extern void input(void *, int);
-	extern void * output();
 */
 // #include <stdio.h>
 // #include <stdlib.h>
