@@ -8,6 +8,15 @@ Doors::Doors(QWidget *parent) :
     ui(new Ui::Doors)
 {
     ui->setupUi(this);
+}
+
+Doors::~Doors()
+{
+    delete ui;
+}
+
+void Doors::init()
+{
     // 关闭自动换行
     ui->textBrowser->setWordWrapMode(QTextOption::NoWrap);
     // 自动换行模式
@@ -22,9 +31,9 @@ Doors::Doors(QWidget *parent) :
     timer->start(1000);
 }
 
-Doors::~Doors()
+void Doors::message(const char * _message)
 {
-    delete ui;
+    QMessageBox::about(this, tr("提示"), tr(_message));
 }
 
 void Doors::sendText()

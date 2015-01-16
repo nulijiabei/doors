@@ -3,6 +3,7 @@ package main
 /*
 	extern void init();
 	extern int start();
+	extern void message(void *);
 */
 // #include <stdio.h>
 // #include <stdlib.h>
@@ -45,6 +46,10 @@ func main() {
 //export input
 func input(_content unsafe.Pointer, _size C.int) {
 	command := string(C.GoBytes(_content, _size))
+	if z.IsBlank(command) {
+		C.message(unsafe.Pointer(C.CString("您如输入命令不支持!")))
+		return
+	}
 	if z.Trim(command) == "clear" {
 		history = z.GetTime() + "\n"
 	} else {

@@ -1,9 +1,10 @@
 #ifndef DOORS_H
 #define DOORS_H
 
-#include <QMainWindow>
+#include <QtGui>
 
 namespace Ui {
+
 class Doors;
 }
 
@@ -14,9 +15,13 @@ class Doors : public QMainWindow
 public:
     explicit Doors(QWidget *parent = 0);
     ~Doors();
+    void init();
 
 public:
     int number;
+
+public:
+    void message(const char *);
 
 public:
     QTimer * timer;

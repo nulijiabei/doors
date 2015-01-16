@@ -12,7 +12,7 @@ TARGET = doors
 TEMPLATE = lib
 
 
-SOURCES += main.cpp\
+SOURCES +=\
         doors.cpp
 
 HEADERS  += doors.h \
